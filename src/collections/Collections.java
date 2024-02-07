@@ -7,6 +7,9 @@ package collections;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -61,23 +64,41 @@ public class Collections {
             intSet.add(num);
         }
         
-        int num = 1;
-        while (num * num <= 100) {
-            System.out.println(num * num);
-            intSet.remove(num * num);
-            num++;
+        Iterator<Integer> setIterator = intSet.iterator();
+        
+        while (setIterator.hasNext()) {
+            int num = setIterator.next();
+            if (Math.sqrt(num) == Math.floor(Math.sqrt(num))) {
+                System.out.println(num);
+                setIterator.remove();
+            }               
         }
+        
+        
+//        int num = 1;
+//        while (num * num <= 100) {
+//            System.out.println(num * num);
+//            intSet.remove(num * num);
+//            num++;
+//        }
 
 
 //      Exception in thread "main" java.util.ConcurrentModificationException
 //        for (int num : intSet) {
+            // sqrt(9) == 3
+            // floor(3) == 3
+            // sqrt(10) == 3.12
+//            floor(3.12) == 3
 //            if (Math.sqrt(num) == Math.floor(Math.sqrt(num))) {
 //                System.out.println(num);
 //                intSet.remove(num);
 //            }
 //        }
         
-//        for (int num = 1; num <= intSet.size(); num++) {
+//        int setSize = intSet.size();
+//        for (int num = 1; num <= setSize; num++) {
+
+//        for (int num = 1; num <= intSet.size(); num++) {  
 //            if (Math.sqrt(num) == Math.floor(Math.sqrt(num))) {
 //                System.out.println(num);
 //                intSet.remove(num);
@@ -88,6 +109,26 @@ public class Collections {
         System.out.println(intSet.contains(100));
         System.out.println(intSet.size());
         
+//        List<Integer> otherIntList = new ArrayList<>();
+//        Map<String, String> coolMap = new HashMap<>();
+
+        HashMap<User, String> userMap = new HashMap<>();
+        
+        userMap.put(new User("Sam"), "Correct horse stable battery");
+        userMap.put(new User("Sean"), "Hello");
+        userMap.put(new User("Sean"), "Hello2");
+        
+        User michael = new User("Michael");
+        
+        userMap.put(michael, "Password123!");
+        System.out.println(userMap.get(michael));
+        userMap.put(michael, "Other Michael");
+        System.out.println(userMap.get(michael));
+        System.out.println(userMap.size());
+        
+
+
+
     }
     
 }
